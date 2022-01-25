@@ -7,8 +7,12 @@ const assert = require('assert');
 */
 
 function flattenArray(array) {
-  console.log('[flattenArray]');
-  return [ 1, 2, 3, 4 ];
+  return array.reduce((acc, current) => {
+    if (Array.isArray(current)) {
+      return [...acc, ...flattenArray(current)];
+    }
+    return [...acc, current];
+  }, [])
 }
 
 // Tests
