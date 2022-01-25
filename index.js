@@ -12,7 +12,13 @@ function flattenArray(array) {
 }
 
 // Tests
-assert.deepStrictEqual(flattenArray([ 1, [ 2, [ 3 ] ], 4 ]), [ 1, 2, 3, 4 ], 'test case 1');
+assert.deepStrictEqual(flattenArray([]), [], 'Empty array');
+assert.deepStrictEqual(flattenArray([ 1, 2, 3, 4 ]), [ 1, 2, 3, 4 ], 'Simple array');
+assert.deepStrictEqual(flattenArray([ 1, [ 2, 3 ], 4 ]), [ 1, 2, 3, 4 ], 'Nested array (Depth = 1)');
+assert.deepStrictEqual(flattenArray([ 1, [ 2, [ 3 ], [ 4, [ 5 ], 6 ] ], 7 ]), [ 1, 2, 3, 4, 5, 6, 7 ], 'Nested array (Depth > 2)');
+assert.deepStrictEqual(flattenArray([ 1, [], 4 ]), [ 1, 4 ], 'Nested array (empty array inside)');
+
+assert.deepStrictEqual(flattenArray([ 1, [ 2, [ 3 ] ], 4 ]), [ 1, 2, 3, 4 ], 'Provided test case');
 
 
 
